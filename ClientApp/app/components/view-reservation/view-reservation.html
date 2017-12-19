@@ -1,0 +1,53 @@
+<h1>Reservation</h1>
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">Reservation</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content" *ngIf="reservation">
+    <!-- Vehicle tab -->
+    <div role="tabpanel" class="tab-pane active" id="basic">
+      <h2>Information</h2>
+      <ul>
+        <li>Take date: {{ reservation.takeDate }}</li>
+        <li>Return date: {{ reservation.returnDate }}</li>
+       
+      </ul>
+      <h2>Parking lot</h2>
+      <ul>
+        <li>Parking Lot: {{ reservation.parkingLot.name }}</li>
+       
+      </ul>
+      <h2>Vehicle</h2>
+      <ul>
+        <li>Vehicle: {{ reservation.vehicleId }}</li>
+      </ul>
+      <h2>Contact</h2>
+      <ul>
+        <li>Name: {{ reservation.name }}</li>
+        <li>Surname: {{ reservation.surname }}</li>
+        <li>Phone number: {{ reservation.phoneNumber }}</li>
+        <li>Email: {{ reservation.email }}</li>
+      </ul>
+      <h2>Other information</h2>
+      <ul>
+        <li>Fuel: {{ reservation.fuel }}</li>
+        <li>Need to wash?: {{ reservation.washed }}</li>
+        <li>Finished?: {{ reservation.finished }}</li>
+        <li>Comment: {{ reservation.comment }}</li>
+      </ul>
+      <br/>
+      <p>
+        <a *ngIf="auth.authenticated()" class="btn btn-primary" [routerLink]="['/reservations/edit/', reservation.id]">Edit</a>
+        <button *ngIf="auth.authenticated()" class="btn btn-danger" (click)="delete()">Delete</button>
+        <a class="btn btn-default" [routerLink]="['/reservations']">View All Reservations</a>
+      </p>
+    </div>
+    
+  </div>
+</div>
+
+

@@ -1,0 +1,104 @@
+<h1>New Vehicle</h1>
+<p>
+  {{ vehicle | json }}
+</p>
+<form #f="ngForm" (ngSubmit)="submit()" validate>
+  <div class="form-group">
+    <label for="make">Make</label>
+    <select id="make" class="form-control" (change)="onMakeChange()" [(ngModel)]="vehicle.makeId" name="makeId" required #make="ngModel">
+      <option value=""></option>
+      <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="make.touched && !make.valid">Please specify the make.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="model">Model</label>
+    <select id="model" class="form-control" [(ngModel)]="vehicle.modelId" name="modelId" required #model="ngModel">
+      <option value=""></option>
+      <option *ngFor="let m of models" value="{{ m.id }}">{{ m.name }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="model.touched && !model.valid">Please specify the model.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="state">State</label>
+    <select id="state" class="form-control" [(ngModel)]="vehicle.stateId" name="stateId" required #state="ngModel">
+      <option value=""></option>
+      <option *ngFor="let s of states" value="{{ s.id }}">{{ s.name }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="state.touched && !state.valid">Please specify the state.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="licensePlate">License plate</label>
+    <input id="licensePlate" type="text" class="form-control" [(ngModel)]="vehicle.licensePlate" name="licensePlate" required #licensePlate="ngModel">
+    <div class="alert alert-danger" *ngIf="licensePlate.touched && !licensePlate.valid">Please specify the license plate.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="cost">Cost an hour</label>
+    <input id="cost" type="text" class="form-control" [(ngModel)]="vehicle.cost" name="cost" required #cost="ngModel">
+    <div class="alert alert-danger" *ngIf="cost.touched && !cost.valid">Please specify the cost an hour.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="places">Places in vehicle</label>
+    <input id="places" type="text" class="form-control" [(ngModel)]="vehicle.places" name="places" required #places="ngModel">
+    <div class="alert alert-danger" *ngIf="places.touched && !places.valid">Please specify the place value in vehicle.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="consumption">Consumption/100km</label>
+    <input id="consumption" type="text" class="form-control" [(ngModel)]="vehicle.consumption" name="consumption" required #consumption="ngModel">
+    <div class="alert alert-danger" *ngIf="consumption.touched && !consumption.valid">Please specify the consumption/100km.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="dateOfManufacture">Date of manufacture</label>
+    <input id="dateOfManufacture" type="date" class="form-control" [(ngModel)]="vehicle.dateOfManufacture" name="dateOfManufacture" #dateOfManufacture="ngModel">
+    <div class="alert alert-danger" *ngIf="dateOfManufacture.touched && !dateOfManufacture.valid">Please specify the date of manufacture.</div>
+  </div>
+
+
+  <p>Is this vehicle registered?</p>
+  <label for="registered" class="radio-inline">
+    <input type="radio" name="isRegistered" id="registered" [value]="true" [(ngModel)]="vehicle.isRegistered"> Yes
+  </label>
+  <label for="notRegistered" class="radio-inline">
+    <input type="radio" name="isRegistered" id="notRegistered" [value]="false" [(ngModel)]="vehicle.isRegistered"> No
+  </label>
+
+  <div class="form-group">
+    <label for="parkingLot">Parking lot</label>
+    <select id="parkingLot" class="form-control" [(ngModel)]="vehicle.parkingLotId" name="parkingLotId" required #parkingLot="ngModel">
+      <option value=""></option>
+      <option *ngFor="let m of parkingLots" value="{{ m.id }}">{{ m.name }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="parkingLot.touched && !parkingLot.valid">Please specify the parking lot.</div>
+  </div>
+
+  <h2>Features</h2>
+  <div *ngFor="let f of features" class="checkbox">
+    <label for="feature{{ f.id }}">
+      <input type="checkbox" id="feature{{ f.id }}" (change)="onFeatureToggle(f.id, $event)" [checked]="vehicle.features.includes(f.id)"> {{ f.name }}
+    </label>
+  </div>
+  
+  <h2>Contact</h2>
+  <div class="form-group">
+    <label for="contactName">Name</label>
+    <input id="contactName" type="text" class="form-control" [(ngModel)]="vehicle.contact.name" name="contactName" required #contactName="ngModel">
+    <div class="alert alert-danger" *ngIf="contactName.touched && !contactName.valid">Please specify the contact name.</div>
+  </div>
+  <div class="form-group">
+    <label for="contactPhone">Phone</label>
+    <input id="contactPhone" type="text" class="form-control" [(ngModel)]="vehicle.contact.phone" name="contactPhone" required #contactPhone="ngModel">
+    <div class="alert alert-danger" *ngIf="contactPhone.touched && !contactPhone.valid">Please specify the contact phone.</div>
+  </div>
+  <div class="form-group">
+    <label for="contactEmail">Email</label>
+    <input id="contactEmail" type="email" data-val="true" ng-pattern="[^ @]*@[^ @]*" class="form-control" [(ngModel)]="vehicle.contact.email" name="contactEmail">
+  </div>
+  <button class="btn btn-primary">Save</button>
+</form>

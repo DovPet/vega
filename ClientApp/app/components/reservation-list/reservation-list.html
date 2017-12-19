@@ -1,0 +1,34 @@
+<h2>Reservations</h2>
+<p *ngIf="auth.authenticated()">
+  <a [routerLink]="['/reservations/new']" class="btn btn-primary">New Reservation</a>
+</p>
+
+<table class="table">
+        <thead>
+                <tr>
+                  <th *ngIf="auth.authenticated()">Id</th>
+                  <th>Name</th>
+                  <th>Surname</th>
+                  <th>Email</th>
+                  <th>Take date</th>
+                  <th>Finished</th>
+                  
+                  <th *ngIf="auth.authenticated()" >Action</th>
+                </tr>
+            </thead>
+    <tbody>
+    <tr *ngFor="let v of reservation" >
+      <td *ngIf="auth.authenticated()" >{{ v.id }}</td>
+      <td>{{ v.name }}</td>
+      <td >{{ v.surname }}</td>
+      <td >{{ v.email }}</td>
+      <td >{{ v.takeDate }}</td>
+      
+      <td *ngIf=" v.finished " >Yes</td>
+      <td *ngIf="!v.finished" >No</td>
+      <td>
+        <a *ngIf="auth.authenticated()"  [routerLink]="['/reservations/', v.id]">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

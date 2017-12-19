@@ -1,0 +1,80 @@
+<h1>New Reservation</h1>
+<p>
+  {{ reservation | json }}
+</p>
+<form #f="ngForm" (ngSubmit)="submit()" validate>
+    <div class="form-group">
+        <label for="parkingLot">Parking Lot</label>
+        <select id="parkingLot" class="form-control"  [(ngModel)]="reservation.parkingLotId" name="parkingLotId" required #parkingLot="ngModel">
+          <option value=""></option>
+          <option *ngFor="let p of parkingLots" value="{{ p.id }}">{{ p.name }}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="parkingLot.touched && !parkingLot.valid">Please specify the Parking Lot.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicle">Vehicle</label>
+        <select id="vehicle" class="form-control"  [(ngModel)]="reservation.vehicleId" name="vehicleId" required #vehicle="ngModel">
+          <option value=""></option>
+          <option *ngFor="let p of vehicles.items" value="{{ p.id }}">{{ p.model.name }}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="vehicle.touched && !vehicle.valid">Please specify the vehicle.</div>
+      </div>
+     
+      <div class="form-group">
+        <label for="takeDate">Take date</label>
+        <input id="takeDate" type="date" class="form-control" [(ngModel)]="reservation.takeDate" name="takeDate" #takeDate="ngModel">
+        <div class="alert alert-danger" *ngIf="takeDate.touched && !takeDate.valid">Please specify the take date</div>
+      </div>
+      <div class="form-group">
+        <label for="returnDate">Return date</label>
+        <input id="returnDate" type="date" class="form-control" [(ngModel)]="reservation.returnDate" name="returnDate" #returnDate="ngModel">
+        <div class="alert alert-danger" *ngIf="returnDate.touched && !returnDate.valid">Please specify the return date.</div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="reservation.name" name="name" required #name="ngModel">
+        <div class="alert alert-danger" *ngIf="name.touched && !name.valid">Please specify the contact name.</div>
+      </div>
+    <div class="form-group">
+        <label for="surname">Surname</label>
+        <input id="surname" type="text" class="form-control" [(ngModel)]="reservation.surname" name="surname" required #surname="ngModel">
+        <div class="alert alert-danger" *ngIf="surname.touched && !surname.valid">Please specify the surname.</div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone number</label>
+        <input id="phoneNumber" type="text" class="form-control" [(ngModel)]="reservation.phoneNumber" name="phoneNumber" required #phoneNumber="ngModel">
+        <div class="alert alert-danger" *ngIf="phoneNumber.touched && !phoneNumber.valid">Please specify the phone number.</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" data-val="true" ng-pattern="[^ @]*@[^ @]*" class="form-control" [(ngModel)]="reservation.email" name="email">
+      </div>
+
+      <p>Finished?</p>
+      <label for="finished" class="radio-inline">
+        <input type="radio" name="finished" id="finished" [value]="true" [(ngModel)]="reservation.finished"> Yes
+      </label>
+      <label for="notFinish" class="radio-inline">
+        <input type="radio" name="finished" id="notFinish" [value]="false" [(ngModel)]="reservation.finished"> No
+      </label>
+
+      <p>Need to wash?</p>
+      <label ng-show="auth"  for="washed" class="radio-inline">
+        <input  type="radio" name="washed" id="washed" [value]="true" [(ngModel)]="reservation.washed"> Yes
+      </label>
+      <label  ng-show="auth" for="notWashed" class="radio-inline">
+        <input type="radio" name="washed" id="notWashed" [value]="false" [(ngModel)]="reservation.washed"> No
+      </label>
+      <div ng-show="auth" class="form-group">
+        <label for="fuel">Fuel</label>
+        <input id="fuel" type="text" class="form-control" [(ngModel)]="reservation.fuel" name="fuel" required #fuel="ngModel">
+        <div class="alert alert-danger" *ngIf="fuel.touched && !fuel.valid">Please specify amount of fuel.</div>
+      </div>
+      <div ng-show="auth" class="form-group">
+        <label for="comment">Comment</label>
+        <input id="comment" type="text" class="form-control" [(ngModel)]="reservation.comment" name="comment" required #comment="ngModel">
+        <div class="alert alert-danger" *ngIf="comment.touched && !comment.valid">Please specify the comment.</div>
+      </div>
+      <button class="btn btn-primary">Save</button>
+    </form>

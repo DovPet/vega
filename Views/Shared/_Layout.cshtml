@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<!-- // -->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - AuRenta</title>
+        <base href="/" />
+        <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+        <p style="text-align: right" ><img  src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAA2mAAAAJGE2OGI1NThmLWZmMjEtNGVlMi04ODgzLWM3NzhjODU2ZjNiNg.png" style="max-width:100px"/></p>
+    </head>
+    <body>
+
+        @RenderBody()
+@RenderSection("footer", required: true)
+        @RenderSection("scripts", required: false)
+        
+    </body>
+       
+   
+    
+</html>

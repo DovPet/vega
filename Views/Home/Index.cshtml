@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<app xasp-prerender-module="ClientApp/dist/main-server">
+<p style="text-align:center"><img src="http://datainflow.com/wp-content/uploads/2017/09/loader.gif"></p>
+</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
+
+@section footer{
+<footer class="site-footer">  
+    
+            <div style="text-align:right">
+                &copy;Dovydas Petrutis IFF-4/3 KTU 2017
+                <a href="https://www.facebook.com/dovydas.petrutis"><i class="fa fa-facebook-square fa-3x social"></i></a>
+	            <a href="https://twitter.com/DovPet"><i class="fa fa-twitter-square fa-3x social"></i></a>
+	            <a href="https://plus.google.com/u/0/118365053592061353019"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+	            <a href="dovydas.petrutis@ktu.lt"><i class="fa fa-envelope-square fa-3x social"></i></a>             
+            </div>
+           
+   </footer>
+}

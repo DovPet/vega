@@ -1,0 +1,52 @@
+<h2>Parking lots</h2>
+<p *ngIf="auth.authenticated()">
+  <a [routerLink]="['/parkingLot/new']" class="btn btn-primary">New Parking lot</a>
+</p>
+
+<table class="table">
+        <thead>
+                <tr>
+                  <th *ngIf="auth.authenticated()">Id</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th *ngIf="auth.authenticated()" >Action</th>
+                </tr>
+            </thead>
+    <tbody>
+    <tr *ngFor="let v of parkingLot" >
+      <td *ngIf="auth.authenticated()" >{{ v.id }}</td>
+      <td>{{ v.name }}</td>
+      <td >{{ v.address }}</td>
+      <td>
+        <a *ngIf="auth.authenticated()"   data-toggle="modal" data-target="#myModal">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div  class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2>Information</h2>
+        <ul *ngFor="let v of parkingLot">
+          <li>Name: {{ v.name }}</li>
+          <li>Address: {{ v.address }}</li>
+          <a *ngIf="auth.authenticated()" data-dismiss="modal" class="btn btn-primary" [routerLink]="['/parkingLot/edit/', v.id]">Edit</a>
+          <button *ngIf="auth.authenticated()" data-dismiss="modal" class="btn btn-danger" (click)="delete()">Delete</button>
+        </ul>
+        <h2>Vehicles in parking lot</h2>
+        <br/>
+        <p>
+          
+         
+          <a class="btn btn-default" data-dismiss="modal" [routerLink]="['/parkingLot']">View All Parking lots</a>
+        </p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

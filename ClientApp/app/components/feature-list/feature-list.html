@@ -1,0 +1,24 @@
+<h2>Features for vehicle</h2>
+<p *ngIf="auth.authenticated()">
+  <a [routerLink]="['/features/new']" class="btn btn-primary">New feature</a>
+</p>
+
+<table class="table">
+        <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+    <tbody>
+    <tr *ngFor="let v of feature">
+      <td>{{ v.id }}</td>
+      <td>{{ v.name }}</td>
+      <td>
+        <a *ngIf="auth.authenticated()" class="btn btn-primary" [routerLink]="['/features/edit/', v.id]">Edit</a>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,48 @@
+<h1>Parking lot</h1>
+<div>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div  class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2>Information</h2>
+          <ul *ngFor="let v of parkingLot">
+            <li>Name: {{ v.name }}</li>
+            <li>Address: {{ v.address }}</li>
+            <a *ngIf="auth.authenticated()" data-dismiss="modal" class="btn btn-primary" [routerLink]="['/parkingLot/edit/', v.id]">Edit</a>
+          </ul>
+          <h2>Vehicles in parking lot</h2>
+          <br/>
+          <p>
+            
+            <button *ngIf="auth.authenticated()" data-dismiss="modal" class="btn btn-danger" (click)="delete()">Delete</button>
+            <a class="btn btn-default" data-dismiss="modal" [routerLink]="['/parkingLot']">View All Parking lots</a>
+          </p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <!-- Tab panes -->
+  <div class="tab-content" *ngIf="parkingLot">
+    <!-- Vehicle tab -->
+    <div role="tabpanel" class="tab-pane active" id="basic">
+      <h2>Information</h2>
+      <ul>
+        <li>Name: {{ parkingLot.name }}</li>
+        <li>Address: {{ parkingLot.address }}</li>
+      </ul>
+      <h2>Vehicles in parking lot</h2>
+      <br/>
+      <p>
+        <a *ngIf="auth.authenticated()" class="btn btn-primary" [routerLink]="['/parkingLot/edit/', parkingLot.id]">Edit</a>
+        <button *ngIf="auth.authenticated()" class="btn btn-danger" (click)="delete()">Delete</button>
+        <a class="btn btn-default" [routerLink]="['/parkingLot']">View All Parking lots</a>
+      </p>
+    </div>
+    </div>
